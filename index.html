@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>linux笔记</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/moxiaobei/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.5/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <ul>
+<li><a href="#%E7%AC%94%E8%AE%B0">笔记</a><br>
+* <a href="#%E4%B8%80%E4%BA%9Blinux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4">一些Linux基础命令</a><br>
+* <a href="#git-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4">git 基本命令</a><br>
+* <a href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E4%BB%93%E5%BA%93%E6%96%B9%E6%B3%95">本地文件上传到仓库方法</a><br>
+* <a href="#git%E9%87%8C%E9%9D%A2%E6%B7%BB%E5%8A%A0ssh-%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5-%E6%96%B9%E4%BE%BF%E4%B8%8D%E9%9C%80%E8%A6%81%E5%A4%9A%E6%AC%A1%E8%BE%93%E5%85%A5%E8%B4%A6%E5%8F%B7%E8%BF%B7%E7%A0%81">git里面添加ssh  生成秘钥 方便不需要多次输入账号,迷码</a><br>
+* <a href="#%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93%E7%9A%84%E6%AD%A5%E9%AA%A4">在本地新建仓库的步骤</a><br>
+* <a href="#git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C">git分支操作</a><br>
+* <a href="#%E5%AE%89%E8%A3%85nodejs">安装node.js</a><br>
+* <a href="#node-%E5%88%86%E4%B8%89%E5%9D%97-%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97">node 分三块 核心模块 第三方模块 自定义模块</a><br>
+* <a href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83-react%E6%9C%8D%E5%8A%A1">安装环境 react服务</a><br>
+* <a href="#gitbook%E8%BD%AF%E4%BB%B6%E6%93%8D%E4%BD%9C">gitbook软件操作</a><br>
+* <a href="#es6">ES6</a><br>
+* <a href="#es6%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0">ES6箭头函数</a><br>
+* <a href="#es6-%E6%A8%A1%E6%9D%BF">ES6 模板</a><br>
+* <a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0default-%E5%92%8C-%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0-rest">函数的默认参数Default 和 剩余参数 Rest</a><br>
+* <a href="#%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%AC%A6">扩展操作符</a><br>
+* <a href="#%E6%95%B0%E7%BB%84">数组</a><br>
+* <a href="#es6-%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA">es6 导入导出</a><br>
+* <a href="#ajax">AJAX</a><br>
+* <a href="#axios">axios</a><br>
+* <a href="#vue">VUE</a></li>
+</ul>
+<h1 class="mume-header" id="%E7%AC%94%E8%AE%B0">笔记</h1>
+
+<h3 class="mume-header" id="%E4%B8%80%E4%BA%9Blinux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4">一些Linux基础命令</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>nvm install stable #&#x5B89;&#x88C5;&#x6700;&#x65B0;&#x7A33;&#x5B9A;&#x7248; node 
+sudo apt-get -install vscode  &#x4E0B;&#x8F7D;vsc&#x7F16;&#x8BD1;&#x5DE5;&#x5177;
+code . &#x6253;&#x5F00;vsc&#x7F16;&#x8F91;&#x5668;
+ctrl+alt+T	&#x6253;&#x5F00;&#x547D;&#x4EE4;&#x884C;
+pwd	&#x5728;&#x547D;&#x4EE4;&#x884C;&#x5185;&#x5199;	&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4F4D;&#x7F6E;
+ls	&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4F4D;&#x7F6E;&#x7684;&#x6587;&#x4EF6;(&#x4E0D;&#x5305;&#x62EC;&#x9690;&#x85CF;&#x6587;&#x4EF6;)
+ls -a &#x67E5;&#x770B;&#x6240;&#x6709;&#x6587;&#x4EF6;(&#x5305;&#x62EC;&#x9690;&#x85CF;&#x6587;&#x4EF6;)
+ls --help	&#x5E2E;&#x52A9;
+ls -A &#x67E5;&#x770B;&#x6240;&#x6709;&#x7684;&#x9690;&#x85CF;&#x6587;&#x4EF6;(&#x6BD4;&#x8F83;-a&#x67E5;&#x770B;&#x7684;&#x66F4;&#x591A;&#x4E00;&#x4E9B;,&#x4E00;&#x822C;&#x4E0D;&#x4F1A;&#x7528;&#x5230;)
+clear &#x6E05;&#x7A7A;&#x5F53;&#x524D;&#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;	(&#x88AB;&#x6E05;&#x9664;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x5728;&#x4E0A;&#x9762;&#x800C;&#x4E0D;&#x662F;&#x771F;&#x6B63;&#x7684;&#x88AB;&#x6E05;&#x7A7A;)
+cd	&#x8FDB;&#x5165;&#x6587;&#x4EF6;&#x5939;(&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;)
+cd ../	&#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;
+touch &#x6587;&#x4EF6;&#x540D;(&#x52A0;&#x4E0A;&#x6587;&#x4EF6;&#x6269;&#x5C55;&#x540D;)	&#x65B0;&#x5EFA;&#x6587;&#x6863;	&#x5982;&#x679C;&#x60F3;&#x8981;&#x521B;&#x5EFA;&#x591A;&#x4E2A;&#x5C31;&#x5728;&#x540D;&#x5B57;&#x540E;&#x9762;&#x6DFB;&#x52A0;&#x7A7A;&#x683C;&#x5C31;&#x53EF;&#x4EE5;
+mkdir &#x6587;&#x4EF6;&#x5939;&#x540D;		&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939; &#x5982;&#x679C;&#x60F3;&#x8981;&#x521B;&#x5EFA;&#x591A;&#x4E2A;&#x5728;&#x540D;&#x5B57;&#x7684;&#x540E;&#x9762;&#x540D;&#x540E;&#x9762;&#x6DFB;&#x52A0;&#x7A7A;&#x683C;&#x5C31;&#x53EF;&#x4EE5;
+cat &#x6587;&#x4EF6;&#x540D;	&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5185;&#x5BB9;
+rm &#x6587;&#x4EF6;&#x540D;	&#x5220;&#x9664;
+rm &#x6587;&#x4EF6;&#x5939;&#x540D; -r	&#x5220;&#x9664;&#x6587;&#x4EF6;&#x5939;
+rm -rf  &#x6587;&#x4EF6;&#x540D;(&#x6216;&#x8005;&#x6587;&#x4EF6;&#x5939;)	&#x5F3A;&#x5236;&#x5220;&#x9664;
+cp &#x6587;&#x4EF6;&#x540D; &#x6587;&#x4EF6;&#x5939;&#x540D;	&#x590D;&#x5236;&#x67D0;&#x4E2A;&#x6587;&#x4EF6;&#x5230;&#x6587;&#x4EF6;&#x5939;&#x5185;	
+cp -r &#x6587;&#x4EF6;&#x5939;&#x540D; &#x65B0;&#x6587;&#x4EF6;&#x5939;&#x540D;	 &#x590D;&#x5236;&#x6587;&#x4EF6;&#x5939;&#x5230;&#x65B0;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x5185;
+cp &#x6587;&#x4EF6;&#x540D; &#x65B0;&#x6587;&#x4EF6;&#x540D;	&#x91CD;&#x547D;&#x540D;
+mv &#x6587;&#x4EF6;&#x540D;(&#x6216;&#x8005;&#x6587;&#x4EF6;&#x5939;&#x540D;)	&#x526A;&#x5207;
+~	&#x4EE3;&#x8868;&#x7528;&#x6237;&#x4E3B;&#x76EE;&#x5F55;
+/	&#x4EE3;&#x8868;&#x7528;&#x6237;&#x6839;&#x76EE;&#x5F55;
+./	&#x4EE3;&#x8868;&#x5F53;&#x524D;&#x76EE;&#x5F55;
+ctrl+c	&#x7ED3;&#x675F;&#x5F53;&#x524D;&#x547D;&#x4EE4;
+rm ./* &#x5220;&#x9664;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x5185;&#x7684;&#x6587;&#x4EF6;
+</code></pre><h3 class="mume-header" id="git-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4">git 基本命令</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x5728;Linux &#x4E0A;&#x5B89;&#x88C5;git 	git&#x5728;&#x7EC8;&#x7AEF;&#x8F93;&#x5165;	sudo apt-get install git (&#x610F;&#x601D;&#x662F;&#x5B89;&#x88C5;git)
+
+windows &#x4E0A;&#x5B89;&#x88C5;git bash
+
+&#x5728;&#x7EC8;&#x7AEF;&#x8F93;&#x5165;git clone &#x7F51;&#x4E0A;&#x7684;&#x90A3;&#x4E2A;&#x5730;&#x5740; &#x7136;&#x540E;&#x56DE;&#x8F66;&#x5C31;&#x53EF;&#x4EE5;&#x628A;&#x7F51;&#x4E0A;&#x7684;&#x4ED3;&#x5E93;&#x514B;&#x9686;&#x5230;&#x672C;&#x5730;&#x4E86;
+
+git log &#x67E5;&#x770B;&#x7248;&#x672C;&#x53F7;
+git log --pretty=oneline	&#x67E5;&#x770B;&#x7248;&#x672C;&#x4FE1;&#x606F; &#x6BCF;&#x4E2A;&#x7248;&#x672C;&#x4FE1;&#x606F;&#x5728;&#x4E00;&#x884C;&#x663E;&#x793A;
+git pull &#x628A;&#x7F51;&#x4E0A;&#x7684;&#x7248;&#x672C;&#x62C9;&#x5012;&#x672C;&#x5730;,&#x514B;&#x9686;&#x7F51;&#x4E0A;&#x7684;&#x4ED3;&#x5E93;&#x5230;&#x672C;&#x5730;
+git reset --hard HEAD^	&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x7248;&#x672C;&#x56DE;&#x9000;&#x5230;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;	&#x591A;&#x4E2A;^&#x610F;&#x601D;&#x662F;&#x8FD4;&#x56DE;&#x591A;&#x4E2A;&#x7248;&#x672C;
+git reset --hard &#x7248;&#x672C;&#x53F7;  &#x672C;&#x5730;&#x53C2;&#x8003;&#x56DE;&#x9000;&#x5230;&#x4E0E;&#x7248;&#x672C;&#x53F7;&#x76F8;&#x5BF9;&#x5E94;&#x7684;&#x7248;&#x672C;
+git push -f	&#x5F3A;&#x5236;&#x7F51;&#x4E0A;&#x548C;&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x540C;&#x6B65; &#x8986;&#x76D6;&#x7F51;&#x4E0A;&#x7248;&#x672C;
+git reflog	&#x67E5;&#x770B;git&#x8BB0;&#x5F55;&#x8FC7;&#x5F97;&#x6240;&#x6709;&#x5386;&#x53F2;&#x7248;&#x672C;
+git status	&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4ED3;&#x5E93;&#x7684;&#x6587;&#x4EF6;&#x72B6;&#x6001;	(&#x4E0A;&#x4F20;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x9700;&#x8981;)
+</code></pre><h3 class="mume-header" id="%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E4%BB%93%E5%BA%93%E6%96%B9%E6%B3%95">本地文件上传到仓库方法</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>git add .	&#x5C06;&#x4F60;&#x7684;&#x4FEE;&#x6539;&#x8BA9;git&#x8BB0;&#x5F55;
+git status	&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4ED3;&#x5E93;&#x7684;&#x6587;&#x4EF6;&#x72B6;&#x6001;	(&#x4E0A;&#x4F20;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x9700;&#x8981;)
+git commit -m &apos;&#x7248;&#x672C;&#x7559;&#x8A00;(&#x5199;&#x4EC0;&#x4E48;&#x90FD;&#x53EF;&#x4EE5;&#x4F46;&#x662F;&#x5FC5;&#x987B;&#x5199;)&apos; 	
+git push	&#x672C;&#x5730;&#x548C;&#x7F51;&#x4E0A;&#x540C;&#x6B65;  &#x5982;&#x679C;&#x7F51;&#x4E0A;&#x7684;&#x66F4;&#x65B0;&#x548C;&#x672C;&#x5730;&#x8981;&#x63D0;&#x4EA4;&#x7684;&#x4FEE;&#x6539;&#x53D1;&#x751F;&#x51B2;&#x7A81; git pull &#x4F1A;&#x5931;&#x6548;, 
+                &#x9700;&#x8981;&#x5728;&#x51B2;&#x7A81;&#x7684;&#x6587;&#x4EF6;&#x4E0B;&#x624B;&#x52A8;&#x89E3;&#x51B3;&#x51B2;&#x7A81; &#x624B;&#x52A8;&#x89E3;&#x51B3;&#x51B2;&#x7A81;&#x76F8;&#x5F53;&#x4E8E;&#x518D;&#x6B21;&#x4FEE;&#x6539; &#x6240;&#x4EE5;&#x9700;&#x8981;&#x518D;&#x6B21;git add. git commit -m &apos;&#x7248;&#x672C;&#x4FE1;&#x606F;&apos; git push &#x63D0;&#x4EA4;&#x4FE1;&#x606F;
+</code></pre><h3 class="mume-header" id="git%E9%87%8C%E9%9D%A2%E6%B7%BB%E5%8A%A0ssh-%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5-%E6%96%B9%E4%BE%BF%E4%B8%8D%E9%9C%80%E8%A6%81%E5%A4%9A%E6%AC%A1%E8%BE%93%E5%85%A5%E8%B4%A6%E5%8F%B7%E8%BF%B7%E7%A0%81">git里面添加ssh  生成秘钥 方便不需要多次输入账号,迷码</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x547D;&#x4EE4;&#x884C; ssh-keygen &#x4E00;&#x76F4;&#x56DE;&#x8F66; &#x751F;&#x6210;&#x4E00;&#x4E2A;&#x56FE;&#x7247;&#x540E;	&#x8F93;&#x5982;cd ~ &#x7136;&#x540E;ls -a &#x770B;&#x5230;&#x6709;.ssh &#x6587;&#x4EF6; &#x8F93;&#x5165; cd .ssh 
+&#x7136;&#x540E;ls &#x770B;&#x5230;&#x6709;&#x4E24;&#x4E2A;&#x6587;&#x4EF6; &#x7136;&#x540E;cat id_rsa.pub&#x770B;&#x5230;&#x51FA;&#x73B0;&#x5F88;&#x591A;&#x884C;&#x7684;&#x4E00;&#x4E2A;&#x5BC6;&#x7801;,&#x590D;&#x5236;&#x5B83;,
+&#x7136;&#x540E;&#x70B9;&#x5F00;github &#x70B9;&#x51FB;&#x8BBE;&#x7F6E;,&#x7136;&#x540E;&#x70B9;&#x51FB;ssh&#x548C;gpg&#x90A3;&#x4E2A;&#x91CC;&#x9762;&#x7684;ssh keys&#x9879;,&#x628A;&#x4E0A;&#x9762;&#x590D;&#x5236;&#x7684;&#x5BC6;&#x7801;&#x7C98;&#x8D34;&#x5230;&#x8FD9;&#x8FB9;,&#x7136;&#x540E;&#x4E0A;&#x4F20;
+</code></pre><h3 class="mume-header" id="%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93%E7%9A%84%E6%AD%A5%E9%AA%A4">在本地新建仓库的步骤</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x5728;&#x7F51;&#x4E0A;&#x65B0;&#x5EFA;&#x4ED3;&#x5E93;&#x6700;&#x597D;&#x548C;&#x672C;&#x5730;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x540D;&#x76F8;&#x540C;
+Initialize this repository with a README&#x524D;&#x9762;&#x7684;&#x4E0D;&#x9700;&#x8981;&#x52FE;&#x9009;
+&#x65B0;&#x5EFA;&#x4ED3;&#x5E93; &#x6309;&#x7167;&#x7F51;&#x4E0A;&#x7684;&#x6B65;&#x9AA4;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x4E86; &#x7B2C;&#x4E00;&#x6B65;&#x662F;git init &#x521D;&#x59CB;&#x5316;&#x672C;&#x5730;&#x6587;&#x4EF6;&#x5939;&#x5230;git&#x4ED3;&#x5E93;
+</code></pre><h3 class="mume-header" id="git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C">git分支操作</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>git branch &#x5206;&#x652F;&#x540D;  (&#x8FD9;&#x662F;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x5206;&#x652F;)
+git branch  (&#x610F;&#x601D;&#x662F;&#x67E5;&#x770B;&#x5206;&#x652F;)
+git checkout  &#x5206;&#x652F;&#x540D;  (&#x610F;&#x601D;&#x662F;&#x5207;&#x6362;&#x5206;&#x652F;) 
+git checkout -b &#x5206;&#x652F;&#x540D;  (&#x610F;&#x601D;&#x662F;&#x65B0;&#x5EFA;&#x5206;&#x652F;,&#x5E76;&#x4E14;&#x5207;&#x6362;&#x5230;&#x65B0;&#x5EFA;&#x7684;&#x5206;&#x652F;)
+git branch -a   (&#x67E5;&#x770B;&#x6240;&#x6709;&#x7684;&#x5206;&#x652F;)
+git branch -r   (&#x67E5;&#x770B;&#x6240;&#x6709;&#x7F51;&#x4E0A;&#x7684;&#x5206;&#x652F;)
+git branch -d &#x5206;&#x652F;&#x540D;   (&#x5220;&#x9664;&#x672C;&#x5730;&#x7684;&#x5206;&#x652F;)
+&#x5728;&#x65B0;&#x5EFA;&#x5206;&#x652F;&#x7684;&#x65F6;&#x5019;,&#x65B0;&#x5EFA;&#x7684;&#x5206;&#x652F;&#x4E5F;&#x6709;&#x4E3B;&#x5206;&#x652F;&#x7684;&#x5185;&#x5BB9;
+git push --set-upstream origin dev(dev&#x662F;&#x65B0;&#x5EFA;&#x7684;&#x5206;&#x652F;&#x540D;)
+
+
+&#x4E0B;&#x9762;&#x7684;&#x4E24;&#x6B65;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x662F;&#x5220;&#x9664;&#x7F51;&#x4E0A;&#x7684;&#x5206;&#x652F;&#x6B65;&#x9AA4;
+git branch -d -r orign/&#x5206;&#x652F;&#x540D;  (&#x5220;&#x9664;&#x7F51;&#x4E0A;&#x7684;&#x5206;&#x652F;1)
+git push origin :&#x5206;&#x652F;&#x540D;  (&#x5220;&#x9664;&#x7F51;&#x4E0A;&#x7684;&#x5206;&#x652F;2)
+
+
+git merge &#x5206;&#x652F;&#x540D;    (&#x5F53;&#x524D;&#x6240;&#x5728;&#x5206;&#x652F;&#x5408;&#x5E76;&#x5176;&#x4ED6;&#x5206;&#x652F;)
+git merge   &#x672C;&#x5730;&#x4ED3;&#x5E93;&#x5DF2;&#x7ECF;&#x5408;&#x5E76;&#x5206;&#x652F;&#x7684;&#x4FEE;&#x6539;&#x4E86; &#x9700;&#x8981;&#x4F7F;&#x7528; git push &#x63D0;&#x4EA4;&#x5230;&#x8FDC;&#x7AEF;
+
+git pull origin master  &#x5F53;&#x4F60;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x5206;&#x652F;&#x60F3;&#x8981;&#x67E5;&#x770B;&#x4E3B;&#x5206;&#x652F;&#x4E0A;&#x5176;&#x4ED6;&#x540C;&#x4E8B;&#x63D0;&#x4EA4;&#x9700;&#x8981;&#x6267;&#x884C;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801; &#x62C9;&#x53D6;&#x4E3B;&#x5206;&#x652F;&#x4E0A;&#x7684;&#x66F4;&#x65B0; &#x53EF;&#x4EE5;&#x4F7F;&#x7528;git push &#x63A8;&#x9001;&#x5230;&#x7F51;&#x4E0A;
+
+gh-pages
+&#x8BBF;&#x95EE;&#x65B9;&#x6CD5; 1:github&#x7528;&#x6237;&#x540D;.github.io &#x4ED3;&#x5E93; &#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x4ED3;&#x5E93;&#x540D;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x4E86;
+&#x8BBF;&#x95EE;&#x65B9;&#x6CD5; 2:&#x82E5;&#x60F3;&#x8981;&#x5176;&#x4ED6;&#x7684;&#x4ED3;&#x5E93;&#x8FBE;&#x5230;&#x76F8;&#x540C;&#x7684;&#x6548;&#x679C;,&#x9700;&#x8981;&#x4F7F;&#x7528;gh-pages&#x5206;&#x652F;
+    &#x65B9;&#x6CD5;:&#x521B;&#x5EFA;&#x4E00;&#x4E2A; gh-pages&#x5206;&#x652F; &#x628A;&#x9700;&#x8981;&#x5C55;&#x793A;&#x7684;&#x9875;&#x9762; &#x653E;&#x5230;gh-pages &#x5206;&#x652F;&#x5185;,&#x7136;&#x540E;&#x63D0;&#x4EA4; &#x4E4B;&#x540E;&#x8BBF;&#x95EE;(&#x7528;&#x6237;&#x540D;.github.io/&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x7684;&#x4ED3;&#x5E93;&#x540D;)
+</code></pre><pre data-role="codeBlock" data-info="" class="language-"><code>git push --set-upstream origin dev(dev&#x662F;&#x65B0;&#x5EFA;&#x7684;&#x4ED3;&#x5E93;&#x540D;)
+&#x610F;&#x601D;&#x662F;&#x5728;&#x672C;&#x5730;&#x65B0;&#x5EFA;&#x5206;&#x652F;&#x4E4B;&#x540E;,&#x7F51;&#x4E0A;&#x6CA1;&#x6709;&#x5206;&#x652F;,&#x9700;&#x8981;&#x4E0A;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x624D;&#x80FD;&#x63A8;&#x9001;&#x5230;&#x7F51;&#x4E0A;&#x65B0;&#x5EFA;&#x7684;&#x5206;&#x652F;(&#x8FD9;&#x53E5;&#x8BDD;&#x4F1A;&#x5728;git push &#x7684;&#x65F6;&#x5019;&#x51FA;&#x73B0;,&#x76F4;&#x63A5;&#x590D;&#x5236;&#x540E;,&#x7C98;&#x8D34;&#x5230;&#x4E0B;&#x9762;&#x56DE;&#x8F66;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;)
+
+</code></pre><p><img src="images/1.png" alt="" title="&#x63CF;&#x8FF0;"></p>
+<h3 class="mume-header" id="%E5%AE%89%E8%A3%85nodejs">安装node.js</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x9996;&#x5148;&#x5B89;&#x88C5;curl          &#x547D;&#x4EE4;&#x884C;&#x5185;&#x5199;sudo apt-get install curl
+
+nvm&#x7684;&#x610F;&#x601D;&#x662F;node &#x7248;&#x672C;&#x7BA1;&#x7406;
+&#x5B89;&#x88C5;&#x65B9;&#x6CD5;:curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash   &#x610F;&#x601D;&#x662F;&#x5B89;&#x88C5;nvm
+
+nvm --version   &#x67E5;&#x770B;&#x5F53;&#x524D;&#x7684;&#x7248;&#x672C;&#x53F7;
+nvm ls-remote  &#x67E5;&#x770B;&#x6240;&#x6709;&#x7684;&#x7248;&#x672C;&#x53F7;
+nvm install v8.11.1(&#x8FD9;&#x662F;node.js&#x7684;&#x7248;&#x672C;&#x53F7;) &#x67E5;&#x770B;&#x6240;&#x6709;&#x7684;&#x7248;&#x672C;&#x53F7;&#x540E;&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;
+
+npm init &#x521D;&#x59CB;&#x5316;&#x4F60;&#x7684;&#x9879;&#x76EE;&#x4E3A; npm&#x7684;&#x9879;&#x76EE;,&#x4F7F;&#x7528;npm&#x7BA1;&#x7406;&#x81EA;&#x5DF1;&#x7684;&#x9879;&#x76EE;&#x4F9D;&#x8D56;,&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;package.json &#x5C31;&#x6210;&#x529F;&#x4E86;
+
+npm install jquery --save   &#x4F7F;&#x7528; npm &#x5B89;&#x88C5;&#x975E;&#x5DE5;&#x5177;&#x7C7B;&#x7684;&#x4F9D;&#x8D56; (&#x5FC5;&#x987B;&#x6709;,&#x6CA1;&#x6709;&#x5C31;&#x4E0D;&#x80FD;&#x6267;&#x884C;,&#x4F7F;&#x7528;)
+npm install webpack --save-dev  &#x4F7F;&#x7528;npm &#x5B89;&#x88C5;&#x5DE5;&#x5177;&#x7C7B;&#x7684;&#x4F9D;&#x8D56;
+--save-dev  &#x53EF;&#x4EE5;&#x6362;&#x6210;-D 
+
+&#x5B89;&#x88C5;&#x540E;&#x591A;&#x4E86;&#x4E00;&#x4E2A;node_modules&#x6587;&#x4EF6;&#x5939;&#x548C;package-lock.json&#x6587;&#x4EF6;
+
+&#x4F7F;&#x7528;npm i &#x4F1A;&#x5C06;package.json &#x91CC;&#x9762;&#x8BB0;&#x5F55;&#x7684;&#x6240;&#x6709;&#x9879;&#x76EE;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x5E76;&#x4E14;&#x7248;&#x672C;&#x5B8C;&#x5168;&#x4E00;&#x81F4;.
+
+&#x5C0F;&#x63D0;&#x793A;json&#x6587;&#x4EF6;&#x6700;&#x540E;&#x4E00;&#x9879;&#x4E0D;&#x9700;&#x8981;&#x52A0;(,) &#x5C5E;&#x6027;&#x540D;&#x548C;&#x5C5E;&#x6027;&#x503C;&#x90FD;&#x9700;&#x8981;&#x6DFB;&#x52A0;(&quot;&quot;) 
+&#x5982;&#x679C;&#x60F3;&#x8981;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x5185;&#x8F93;&#x51FA; &#x4F7F;&#x7528; npm run &#x5C5E;&#x6027;&#x540D; &#x65B9;&#x6CD5;&#x8F93;&#x51FA;
+
+npm uninstall jquery &#x8FD9;&#x662F;&#x5378;&#x8F7D;jquery&#x7684;&#x65B9;&#x6CD5; &#x5728;&#x547D;&#x4EE4;&#x884C;&#x5185;&#x5199;
+npm i jquery@1 &#x8FD9;&#x662F;&#x4E0B;&#x8F7D;jquery1&#x7248;&#x672C;&#x91CC;&#x9762;&#x6700;&#x9AD8;&#x7684;&#x90A3;&#x4E2A;
+
+npm i -g &#x5305;&#x540D;  &#x8FD9;&#x662F;&#x5728;&#x5168;&#x5C40;&#x4E0B;&#x5B89;&#x88C5;&#x5305;,&#x5728;&#x7CFB;&#x7EDF;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x90FD;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6216;&#x8005;&#x67E5;&#x770B;   
+&#x4F7F;&#x7528; &#x5305;&#x540D; .(&#x53EF;&#x4EE5;&#x67E5;&#x770B;)
+</code></pre><h3 class="mume-header" id="node-%E5%88%86%E4%B8%89%E5%9D%97-%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97">node 分三块 核心模块 第三方模块 自定义模块</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x6838;&#x5FC3;&#x6A21;&#x5757; &#x5BFC;&#x5165;&#x65B9;&#x5F0F;   require(&apos;&#x6A21;&#x5757;&#x540D;&apos;)
+&#x7B2C;&#x4E09;&#x653E;&#x6A21;&#x5757; &#x5BFC;&#x5165;&#x65B9;&#x5F0F;  fs require(&apos;&#x6A21;&#x5757;&#x540D;&apos;)
+&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;  &#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5BFC;&#x5165;&#x5BFC;&#x51FA; 
+
+git &#x4ED3;&#x5E93;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x7684; .gitignore &#x6587;&#x4EF6; &#x662F;&#x5FFD;&#x7565;&#x4E0A;&#x4F20;&#x6587;&#x4EF6; &#x91CC;&#x9762;&#x5199;&#x7684;&#x5185;&#x5BB9;&#x4E0A;&#x4F20;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x4F1A;&#x4E0A;&#x4F20;&#x5230;git (&#x9700;&#x8981;&#x5728;&#x4E0A;&#x4F20;git&#x4E4B;&#x524D;&#x5EFA;&#x7ACB;)
+
+.gitignore &#x91CC;&#x9762;&#x5199;node_modules&#x548C;package-lock.json&#x4E24;&#x53E5;&#x8BDD;
+</code></pre><h3 class="mume-header" id="%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83-react%E6%9C%8D%E5%8A%A1">安装环境 react服务</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>npm i -g create-react-app
+npm update express          (&#x66F4;&#x65B0;react&#x7684;&#x7248;&#x672C;)
+create-react-app --version  (&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x7248;&#x672C;&#x4FE1;&#x606F;)
+create-react-app &#x6587;&#x4EF6;&#x5939;&#x540D;    (&#x8FD9;&#x662F;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;react&#x7684;&#x73AF;&#x5883;&#x6587;&#x4EF6;&#x5939;)
+</code></pre><h3 class="mume-header" id="gitbook%E8%BD%AF%E4%BB%B6%E6%93%8D%E4%BD%9C">gitbook软件操作</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>gitbook&#x64CD;&#x4F5C;&#x7F51;&#x5740;
+http://www.chengweiyang.cn/gitbook/introduction/README.html
+
+&#x6700;&#x91CD;&#x8981;&#x7684;&#x4E00;&#x6B65;&#x4E0B;&#x8F7D;node.js&#x7684;&#x65B9;&#x6CD5; nvm install stable #&#x5B89;&#x88C5;&#x6700;&#x65B0;&#x7A33;&#x5B9A;&#x7248; node 
+
+&#x7528;&#x6D4F;&#x89C8;&#x5668;&#x6253;&#x5F00; http://127.0.0.1:4000 &#x67E5;&#x770B;&#x4E66;&#x7C4D;&#x7684;&#x6548;&#x679C;
+</code></pre><h3 class="mume-header" id="es6">ES6</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code> &#x6570;&#x7EC4;&#x3001;&#x5BF9;&#x8C61;&#x548C;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x89E3;&#x6784;&#x8D4B;&#x503C;&#x793A;&#x4F8B;
+ let a = 10
+ console.log(a)
+
+
+ let [a,b,c] = [10,20,30]
+ console.log(a,b,c);     &#x8F93;&#x51FA;&#x7684;&#x662F;10,20,30
+
+
+ let [q, ,w] =[1,2,3] 
+ console.log(q,w); &#x8F93;&#x51FA;&#x7684;&#x662F;1,3
+
+
+ function getVal() {
+     return [1, 2];
+ }
+ let [x, y] = getVal()&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x89E3;&#x6784;
+ console.log(x,y);  &#x8F93;&#x51FA;&#x7684;&#x662F;1,2
+
+
+ let str = &quot;hello&quot;
+ let [p,o,i] = str
+ console.log(p,o,i); &#x8F93;&#x51FA;&#x7684;&#x662F;h e l
+
+
+ let user = {
+     username:&apos;zzt&apos;,
+     age:20,
+     touch:&apos;&#x4E09;&#x6708;&apos;,
+     number:&apos;&#x82CD;&#x6708;&apos;
+ }
+ let {username,age,touch,number} = user
+ console.log(username,age,touch,number);  &#x8F93;&#x51FA;&#x7684;&#x662F;zzt  20  &#x4E09;&#x6708;  &#x82CD;&#x6708;     
+
+
+ let user = {
+     username:&apos;zzt&apos;,
+     age:20,
+     touch:&apos;&#x4E09;&#x6708;&apos;,
+     number:&apos;&#x82CD;&#x6708;&apos;
+ }
+ function show({number}){
+     console.log(number);       &#x8F93;&#x51FA;&#x7684;&#x662F;&#x82CD;&#x6708;       &#x8FD9;&#x662F;&#x5BF9;&#x8C61;&#x7684;&#x7ED3;&#x6784;&#x8D4B;&#x503C;
+ }
+ show(user)
+</code></pre><h3 class="mume-header" id="es6%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0">ES6箭头函数</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code> &#x7BAD;&#x5934;&#x51FD;&#x6570;
+ &#x7BAD;&#x5934;&#x51FD;&#x6570;: &#x7BAD;&#x5934;&#x51FD;&#x6570;&#x7B80;&#x5316;&#x4E86;&#x51FD;&#x6570;&#x7684;&#x7684;&#x5B9A;&#x4E49;&#x65B9;&#x5F0F;&#xFF0C;&#x4E00;&#x822C;&#x4EE5; &quot;=&gt;&quot; &#x64CD;&#x4F5C;&#x7B26;&#x5DE6;&#x8FB9;&#x4E3A;&#x8F93;&#x5165;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x800C;&#x53F3;&#x8FB9;&#x5219;&#x662F;&#x8FDB;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x4EE5;&#x53CA;&#x8FD4;&#x56DE;&#x7684;&#x503C;
+
+
+ &#x4E4B;&#x524D;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x5199;&#x6CD5;
+ let fun = function(a,b){
+     return a+b
+ }
+ console.log(fun(3,4));  &#x8F93;&#x51FA;&#x7684;7
+
+
+ &#x7BAD;&#x5934;&#x51FD;&#x6570;&#x7684;&#x5199;&#x6CD5;   
+ &#x5199;&#x6CD5;1: (&#x53C2;&#x6570;) =&gt; &#x8FD4;&#x56DE;&#x503C;
+ &#x5199;&#x6CD5;2: (&#x53C2;&#x6570;) =&gt; {&#x64CD;&#x4F5C; &#x5982;&#x679C;&#x60F3;&#x8981;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x8BDD;    return}
+
+ &#x8FD9;&#x662F;&#x65B9;&#x6CD5;1
+let fun = (a,b) =&gt; a+b
+console.log(fun(3,4)); &#x8F93;&#x51FA;&#x7684;&#x662F;7
+
+ &#x8FD9;&#x662F;&#x65B9;&#x6CD5;2
+let num = (c,d) =&gt;{
+    return c+d
+}
+console.log(num(5,6));  &#x8F93;&#x51FA;&#x7684;&#x662F;11
+
+
+ &#x91CC;&#x9762;&#x7684;&#x53C2;&#x6570;:&#x5F53;&#x53C2;&#x6570;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x7684;&#x65F6;&#x5019; &#x4F7F;&#x7528;()||(&#x53C2;&#x6570;),&#x5982;&#x679C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570;,&#x53EF;&#x4EE5;&#x7B80;&#x5199;&#x6210; a=&gt;{} &#x4E0D;&#x5199;()&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;
+
+ &#x7BAD;&#x5934;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x7684; this &#x6307;&#x5411; &#x5728;&#x58F0;&#x660E;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x89C4;&#x5B9A;&#x597D;&#x4E86;
+ &#x5F53;&#x7BAD;&#x5934;&#x51FD;&#x6570; &#x6CA1;&#x6709;&#x64CD;&#x4F5C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x7684;&#x8BDD; &#x4F7F;&#x7528;({}) &#x6765;&#x8FDB;&#x884C;&#x5904;&#x7406;
+</code></pre><h3 class="mume-header" id="es6-%E6%A8%A1%E6%9D%BF">ES6 模板</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x4F7F;&#x7528;`` &#x952E;&#x76D8;esc&#x4E0B;&#x9762;&#x7684;``&#x6765;&#x8FDB;&#x884C;&#x5305;&#x88F9; &#x91CC;&#x9762;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x4F7F;&#x7528;{} &#x6765;&#x8FDB;&#x884C;&#x5904;&#x7406;
+let obj ={
+    say:&quot;sun&quot;,
+    name:&apos;123&apos;
+}
+console.log(`my name is ${obj.say},my say is ${obj.name}`);  &#x8F93;&#x51FA;&#x7684;&#x662F;  my name is sun,my say is 123
+</code></pre><h3 class="mume-header" id="%E5%87%BD%E6%95%B0%E7%9A%84%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0default-%E5%92%8C-%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0-rest">函数的默认参数Default 和 剩余参数 Rest</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x4E00;&#x79CD;&#x5199;&#x7684;&#x65B9;&#x6CD5;
+function sun(a,b){
+    let x = a || 10
+    let y = b || 20
+    console.log(x*y);  &#x8F93;&#x51FA;&#x7684;&#x662F;200
+}
+sun()
+
+
+&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x7684;&#x65B9;&#x6CD5;
+function fun( a = 4, b = 20){
+    console.log(a*b);  &#x8F93;&#x51FA;&#x7684;&#x662F;80
+}
+fun()
+
+
+
+&#x666E;&#x901A;&#x51FD;&#x6570; arguments 
+&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x6CA1;&#x6709; arguments &#x4F7F;&#x7528;&#x5269;&#x4F59;&#x53C2;&#x6570;&#x4EE3;&#x66FF;
+&#x5269;&#x4F59;&#x53C2;&#x6570;,&#x53EA;&#x80FD;&#x5F53;&#x505A;&#x51FD;&#x6570;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53C2;&#x6570;
+&#x666E;&#x901A;&#x5199;&#x6CD5;
+function sum(){
+    console.log(arguments);
+}
+sum(1, 2, 3, 4)  &#x8F93;&#x51FA;&#x7684;&#x662F;(4) [1, 2, 3, 4, callee: &#x192;, Symbol(Symbol.iterator): &#x192;]
+
+&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x5199;&#x6CD5;
+let sum = (a,b,...rest) =&gt; console.log(rest);
+sum(1,2,3,4,5)   &#x8F93;&#x51FA;&#x7684;&#x662F; (3) [ 3, 4, 5]
+
+</code></pre><h3 class="mume-header" id="%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%AC%A6">扩展操作符</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code> &#x4E4B;&#x524D;&#x7684;&#x64CD;&#x4F5C;
+ let arr = [1,2,3]
+ let array = [4,5,6]
+ let newArr = arr.concat(array,[55])
+ console.log(newArr);  &#x8F93;&#x51FA;&#x7684;&#x662F;(7) [1, 2, 3, 4, 5, 6, 55]
+
+ ES6&#x64CD;&#x4F5C;
+let arr = [1,2,3]
+let array = [4,5,6]
+let newArr = [...arr,...array,24,2,4]
+console.log(newArr);   &#x8F93;&#x51FA;&#x7684;&#x662F;(9) [1, 2, 3, 4, 5, 6, 24, 2, 4]
+
+
+&#x5BF9;&#x8C61;&#x7684;&#x6269;&#x5C55;&#x64CD;&#x4F5C;&#x7B26;
+let user = {
+    name:&apos;zzt&apos;,
+    age:20
+}
+let arr = {
+    num:&apos;&#x4E09;&#x6708;&apos;
+}
+let newArr = Object.assign(user,arr)
+console.log(newArr);  &#x8F93;&#x51FA;&#x7684;&#x662F;{name: &quot;zzt&quot;, age: 20, num: &quot;&#x4E09;&#x6708;&quot;} &#x4F46;&#x662F;&#x540E;&#x9762;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x4F1A;&#x8986;&#x76D6;&#x524D;&#x9762;&#x7684;&#x5C5E;&#x6027;&#x540D;
+
+let num = {...user,...arr}
+console.log(num);     &#x8F93;&#x51FA;&#x7684;&#x662F;{name: &quot;zzt&quot;, age: 20, num: &quot;&#x4E09;&#x6708;&quot;} &#x4F46;&#x662F;&#x540E;&#x9762;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x4F1A;&#x8986;&#x76D6;&#x524D;&#x9762;&#x7684;&#x5C5E;&#x6027;&#x540D;
+</code></pre><h3 class="mume-header" id="%E6%95%B0%E7%BB%84">数组</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code> indexOf  &#x67E5;&#x627E;&#x5728;&#x6570;&#x7EC4;&#x7684;&#x7B2C;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;
+ let a = [1,2,3,4,1,3,4]
+ console.log(a.indexOf(4));  &#x8F93;&#x51FA;&#x7684;&#x662F;3
+ filter &#x7B5B;&#x9009;
+ map  &#x6620;&#x5C04;
+ &#x6570;&#x7EC4;.includes(&#x5143;&#x7D20;)  &#x610F;&#x601D;&#x662F;&#x5224;&#x65AD;&#x8BE5;&#x5143;&#x7D20;&#x5728;&#x6570;&#x7EC4;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;,&#x5982;&#x679C;&#x5B58;&#x5728;&#x8FD4;&#x56DE; true,&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728; &#x8FD4;&#x56DE; false
+ reduce   &#x7D2F;&#x52A0;
+let username = [
+    {
+        name:&apos;zzt&apos;,
+        age:20
+    },
+    {
+        name: &apos;qq&apos;,
+        age: 32
+    },
+    {
+        name: &apos;nn&apos;,
+        age: 8
+    },
+]
+console.log(username.find((item) =&gt; item.name === &apos;qq&apos;));  &#x8F93;&#x51FA;&#x7684;&#x662F;{name: &quot;qq&quot;, age: 32}
+
+
+let newArr = username.filter(item =&gt; item.age&lt;22)
+console.log(newArr); &#x8F93;&#x51FA;&#x7684;&#x662F;&#x5C0F;&#x4E8E;22&#x7684;&#x4E24;&#x4E2A;&#x6570;&#x7EC4;
+
+
+let jun = [2,3,4,5]
+let newNam = jun.map(item =&gt; item*item)
+console.log(newNam); &#x8F93;&#x51FA;&#x7684;&#x662F;[4, 9, 16, 25]
+
+&#x6570;&#x7EC4;.includes(&#x5143;&#x7D20;)  &#x610F;&#x601D;&#x662F;&#x5224;&#x65AD;&#x8BE5;&#x5143;&#x7D20;&#x5728;&#x6570;&#x7EC4;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;,&#x5982;&#x679C;&#x5B58;&#x5728;&#x8FD4;&#x56DE; true,&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728; &#x8FD4;&#x56DE; false
+
+
+a&#x4EE3;&#x8868; &#x6700;&#x7EC8;&#x7684;&#x7ED3;&#x679C;, b&#x4EE3;&#x8868; &#x6570;&#x7EC4;&#x7684;&#x6BCF;&#x4E00;&#x9879; ,&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570; 0 &#x4EE3;&#x8868;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x7684;&#x521D;&#x59CB;&#x503C;
+let skt = [4,1,2,3,4].reduce( (a,b)=&gt; a+b ,0)
+console.log(skt);  //&#x8F93;&#x51FA;&#x7684;&#x662F;14
+
+
+reduce &#x7684;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;
+let a = [
+    {
+        goodName:&apos;&#x82F9;&#x679C;&apos;,
+        price:200,
+        num:2
+    },
+    {
+        goodName: &apos;&#x9999;&#x8549;&apos;,
+        price: 40,
+        num: 1
+    },
+    {
+        goodName: &apos;&#x6CB9;&#x6843;&apos;,
+        price: 100,
+        num: 3
+    },
+]
+let b = a.reduce( (item,a) =&gt; item + a.price*a.num,0)
+console.log(b);  //&#x8F93;&#x51FA;&#x7684;&#x662F;740
+
+
+
+ return &#x5B9E;&#x73B0; map &#x6620;&#x5C04;
+let goodsArr = [
+    {
+        goodName: &apos;&#x6CB9;&#x6843;&apos;,
+        id:123,
+      },
+    {
+        goodName: &apos;&#x706B;&#x9F99;&#x679C;&apos;,
+        id: 456,
+    },
+]
+let obj = goodsArr.reduce((obj,item) =&gt; {
+    obj[item.id] = item 
+    return obj
+},{})
+console.log(obj);      &#x8F93;&#x51FA;&#x7684;&#x662F;123:{ goodName: &quot;&#x6CB9;&#x6843;&quot;, id: 123 }&#x548C;456:{ goodName: &quot;&#x706B;&#x9F99;&#x679C;&quot;, id: 456 }
+
+
+
+ reduce   &#x5B9E;&#x73B0;filter
+
+let goodsArr = [
+    {
+        goodName: &apos;&#x6CB9;&#x6843;&apos;,
+        id: 123,
+        stock:100
+    },
+    {
+        goodName: &apos;&#x706B;&#x9F99;&#x679C;&apos;,
+        id: 456,
+        stock:150
+    },
+    {
+        goodName: &apos;&#x82F9;&#x679C;&apos;,
+        id: 789,
+        stock: 125
+    },
+]
+let obj = goodsArr.reduce((obj,item) =&gt; {
+    if (item.stock &gt; 120) obj.push(item)
+    return obj
+},[])
+console.log(obj)  &#x8F93;&#x51FA;&#x7684;&#x662F;&#x5927;&#x4E8E;120&#x7684;&#x4E24;&#x4E2A;&#x6570;&#x7EC4; &#x82F9;&#x679C;&#x548C;&#x706B;&#x9F99;&#x679C;&#x7684;&#x90A3;&#x4E24;&#x4E2A;&#x6570;&#x7EC4;
+
+
+
+
+ class &#x7C7B;
+
+&#x4E4B;&#x524D;&#x7684;&#x5199;&#x6CD5;,&#x521B;&#x5EFA;&#x6784;&#x9020;&#x51FD;&#x6570;
+ function Person(name) {
+     this.name = name
+ }
+ Person.prototype.sayName = function(){
+     console.log(`my name is ${this.name}`);
+ }
+  &#x521B;&#x5EFA;&#x5B9E;&#x4F8B;&#x5316;&#x7C7B;
+ let zjh = new Person(&apos;&#x6731;&#x519B;&#x6D69;&apos;)
+
+  &#x7EE7;&#x627F;
+ function Man(){
+
+ }
+ Man.prototype = new Person(&apos;zzt&apos;)
+ let zzt1 = new Man()
+
+
+ console.log(zjh);
+ zjh.sayName()  
+ console.log(zzt1);  &#x7EE7;&#x627F;
+
+
+&#x4F7F;&#x7528;es6 &#x7684;&#x8BED;&#x6CD5;
+class Person{
+     class &#x5185;&#x90E8;&#x53EA;&#x80FD;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;   &#x65B9;&#x6CD5;&#x4E4B;&#x95F4;&#x4E0D;&#x80FD;&#x5199; 
+     constructor &#x5C5E;&#x6027;&#x8FD4;&#x56DE;&#x5BF9;&#x521B;&#x5EFA;&#x6B64;&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x7EC4;&#x51FD;&#x6570;&#x7684;&#x5F15;&#x7528;&#x3002; &#x662F;class&#x7684;&#x9ED8;&#x8BA4;&#x65B9;&#x6CD5;,&#x4E0D;&#x8BBE;&#x7F6E;&#x4E5F;&#x4F1A;&#x5B58;&#x5728;,&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x5BF9;&#x8C61;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x7ACB;&#x5373;&#x6267;&#x884C;
+    constructor(name,age){
+        this.name = name
+        this.age = age
+    }
+    sayName(){
+        console.log(`my name is ${this.name}`); &#x8F93;&#x51FA;&#x7684;&#x662F;my name is zzt
+        console.log(`my age is ${this.age}`);  &#x8F93;&#x51FA;&#x7684;&#x662F;my age is 18
+    }
+}
+ let yl = new Person(&apos;&#x6768;&#x4EAE;&apos;,&apos;18&apos;)
+ console.log(yl);
+
+class Man extends Person{
+    constructor(name,age,tal){
+         &#x5FC5;&#x987B;&#x5199;super() &#x5982;&#x679C;&#x8BE5;class &#x7EE7;&#x627F;&#x53E6;&#x5916;&#x4E00;&#x4E2A; class,&#x8BE5;class&#x7684;constructor &#x5185;&#x90E8;&#x9876;&#x7AEF;&#x5FC5;&#x987B;&#x6267;&#x884C;super()
+        super(name,age)
+        this.tal = tal
+    }
+    say(){
+        console.log(&apos;hello&apos;);
+    }
+}
+ &#x5B9E;&#x4F8B;&#x5316;&#x7C7B;&#x7684;&#x65F6;&#x5019;,&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;&#x9996;&#x5148;&#x8981;&#x4F20;&#x9012;&#x7ED9;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;constructor&#x65B9;&#x6CD5; &#x7136;&#x540E; super &#x91CC;&#x9762;&#x7684;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7ED9;,&#x7EE7;&#x627F;&#x7684;&#x7236;&#x7C7B;&#x7684;constructor
+let zzt = new Man(&apos;zzt&apos;,&apos;18&apos;,&apos;190&apos;)
+zzt.sayName()
+console.log(zzt); &#x8F93;&#x51FA;&#x7684;&#x662F;Man {name: &quot;zzt&quot;, age: &quot;18&quot;, tal: &quot;190&quot;}
+</code></pre><h3 class="mume-header" id="es6-%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA">es6 导入导出</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>1.&#x547D;&#x540D;&#x5BFC;&#x51FA; &#x5BFC;&#x5165;&#x7684;&#x65F6;&#x5019; &#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x540D;&#x5B57; 
+</code></pre><p><img src="images/2.png" alt="" title="&#x63CF;&#x8FF0;"></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x5982;&#x679C;&#x76F4;&#x63A5;&#x5199;  import &apos;&#x5730;&#x5740;&apos;  &#x662F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x628A;&#x53E6;&#x4E00;&#x8FB9;&#x7684;&#x5168;&#x90E8;&#x5BFC;&#x5165;&#x8FC7;&#x6765;,&#x4F46;&#x662F;&#x4E00;&#x822C;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;&#x7684;
+</code></pre><pre data-role="codeBlock" data-info="" class="language-"><code>2.&#x9ED8;&#x8BA4;&#x5BFC;&#x51FA; &#x9ED8;&#x8BA4;&#x5BFC;&#x51FA;&#x53EA;&#x80FD;&#x5BFC;&#x51FA;&#x4E00;&#x6B21; &#x5BFC;&#x51FA;&#x65F6;&#x53EF;&#x4EE5;&#x968F;&#x4FBF;&#x547D;&#x540D;
+&#x547D;&#x540D;&#x5BFC;&#x5165;&#x5BFC;&#x51FA;&#x53EF;&#x4EE5;&#x548C;&#x9ED8;&#x8BA4;&#x5BFC;&#x5165;&#x5BFC;&#x51FA;&#x540C;&#x65F6;&#x5B58;&#x5728;
+</code></pre><p><img src="images/3.png" alt="" title="&#x63CF;&#x8FF0;"></p>
+<h3 class="mume-header" id="ajax">AJAX</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x539F;&#x751F;&#x7684; ajax &#x8BF7;&#x6C42; --&gt;  jq &#x7684;&#x8BF7;&#x6C42; --&gt; promise &#x7C7B;(fetch axios) &#x8BF7;&#x6C42;
+ 1.&#x521B;&#x5EFA; XHLHttpRequest &#x5BF9;&#x8C61;
+ 2.&#x4F7F;&#x7528;&#x8BE5;&#x5BF9;&#x8C61;&#x7684; open&#x65B9;&#x6CD5;,&#x5BF9;&#x7684;&#x8BF7;&#x6C42;&#x7684;&#x65B9;&#x6CD5;&#x548C;&#x5730;&#x5740;&#x8FD8;&#x6709;&#x662F;&#x5426;&#x5F02;&#x6B65;
+   &#x8BF7;&#x6C42;&#x7684;&#x65B9;&#x6CD5;GET(&#x901A;&#x5E38;&#x7528;&#x6765;&#x83B7;&#x53D6;&#x6570;&#x636E;)  POST(&#x901A;&#x5E38;&#x7528;&#x6765;&#x4F20;&#x9012;&#x6570;&#x636E;)
+  open() &#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4EE3;&#x8868; &#x8BF7;&#x6C42;&#x7684;&#x5730;&#x5740;
+  open() &#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x4EE3;&#x8868; &#x8BF7;&#x6C42;&#x662F;&#x5426;&#x5F02;&#x6B65; true &#x4EE3;&#x8868;&#x5F02;&#x6B65;
+ 3.&#x4F7F;&#x7528;send()&#x65B9;&#x6CD5; &#x53D1;&#x51FA;&#x8BF7;&#x6C42;
+  GET&#x8BF7;&#x6C42;&#x53D1;&#x6570;&#x636E;
+ let xhr = new XMLHttpRequest()
+ xhr.open(&quot;GET&quot;,&quot;http://api.github.com/users/Lmoxiaobei&quot;,true)
+ xhr.send()
+ xhr.onreadystatechange = function () {
+      onreadystatechange &#x8BF7;&#x6C42;&#x53D1;&#x51FA;&#x65F6;&#x7684;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;
+     if (xhr.readyState === 4 &amp;&amp; xhr.status === 200) {
+          readyState &#x8BF7;&#x6C42;&#x7684;&#x72B6;&#x6001;    status &#x72B6;&#x6001;&#x7801;
+          responseText &#x540E;&#x53F0;&#x54CD;&#x5E94;&#x4E4B;&#x540E;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;
+          &#x73B0;&#x5728;&#x7684; ajax &#x8BF7;&#x6C42; &#x8FD4;&#x56DE;&#x7684;&#x90FD;&#x662F; json &#x5B57;&#x7B26;&#x4E32;
+          json &#x662F;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7C7B;&#x578B;,&#x5411;&#x540E;&#x53F0;&#x4F20;&#x9012; &#x6BD4;&#x8F83;&#x6709;&#x4F18;&#x52BF;, &#x4F53;&#x79EF;&#x5C0F;,&#x4F20;&#x8F93;&#x5FEB; &#x6613;&#x4E8E;&#x5904;&#x7406;
+          &#x5C06; json &#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;&#x5BF9;&#x8C61; JSON.parse(json&#x6570;&#x636E;)
+          xhr.responseText&#x8BF7;&#x6C42;&#x540E;&#x53F0;&#x7684;&#x7ED3;&#x679C;
+         console.log(JSON.parse(xhr.responseText));
+         console.log(xhr.responseText);
+         root.innerHTML = `&lt;img src = ${JSON.parse(xhr.responseText).avatar_url} style = &quot;width:100px&quot;&gt;` &#x5728;&#x9875;&#x9762;&#x751F;&#x6210;&#x56FE;&#x7247;
+     }
+ }
+
+POST &#x8BF7;&#x6C42;&#x53D1;&#x6570;&#x636E;
+let xhr = new XMLHttpRequest()
+xhr.open(&quot;POST&quot;, &quot;https://cnodejs.org/api/v1/accesstoken&quot;, true)
+&#x56E0;&#x4E3A;POST &#x8BF7;&#x6C42; &#x9700;&#x8981;&#x5411;&#x540E;&#x53F0;&#x4F20;&#x9012;&#x6570;&#x636E; &#x9ED8;&#x8BA4;&#x662F;xml &#x7C7B;&#x578B; &#x73B0;&#x5728;&#x90FD;&#x662F;json &#x7C7B;&#x578B; &#x6240;&#x4EE5;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x8BF7;&#x6C42;&#x5934; &#x4E3A;json&#x7C7B;&#x578B;
+xhr.setRequestHeader(&quot;Content-type&quot;,&quot;application/json&quot;)
+  send (&#x5411;&#x540E;&#x53F0;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B; &#x5FC5;&#x987B;&#x662F; json &#x7C7B;&#x578B;)
+xhr.send(`{&quot;accesstoken&quot;:&quot;d12252e5-503c-488b-839f-4e7441c6dafc&quot;}`)
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 &amp;&amp; xhr.status === 200) {
+        console.log(JSON.parse(xhr.responseText));
+        root.innerHTML = `&lt;img src = ${JSON.parse(xhr.responseText).avatar_url} style = &quot;width:100px&quot;&gt;`  &#x5728;&#x9875;&#x9762;&#x751F;&#x6210;&#x56FE;&#x7247;
+    }
+}
+
+
+
+
+jquery &#x7684; GET &#x8BF7;&#x6C42;
+import $ from &apos;jquery&apos;
+ &#x5FEB;&#x6377;&#x952E; jqajax &#x56DE;&#x8F66;
+$.ajax({
+    type:&apos;GET&apos;,
+     type &#x8BF7;&#x6C42;&#x7684;&#x7C7B;&#x578B;
+    url:&quot;https://api.github.com/users/Lmoxiaobei&quot;,
+     url &#x8BF7;&#x6C42;&#x7684;&#x5730;&#x5740;
+    success:function(data){
+         success &#x8BF7;&#x6C42;&#x6210;&#x529F;&#x4E4B;&#x540E; &#x6267;&#x884C;&#x7684;&#x51FD;&#x6570; &#x91CC;&#x9762;&#x7684;&#x53C2;&#x6570;&#x4EE3;&#x8868; &#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;
+        root.innerHTML = `&lt;img src = ${data.avatar_url} style = &quot;width:100px&quot;&gt;`
+        console.log(data);
+    },
+    error:function(err){
+        console.log(err);
+    }
+})
+
+
+ jquery &#x7684;POST &#x8BF7;&#x6C42;
+ import $ from &apos;jquery&apos;
+ $.ajax({
+     type: &quot;POST&quot;,
+     url: &quot;https://cnodejs.org/api/v1/accesstoken&quot;,
+     data: {accesstoken: &quot;d12252e5-503c-488b-839f-4e7441c6dafc&quot;},
+      data &#x60F3;&#x540E;&#x53F0;&#x4F20;&#x9012;&#x7684;&#x6570;&#x636E; &#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x8BBE;&#x7F6E;&#x6210; json&#x683C;&#x5F0F;,&#x76F4;&#x63A5;&#x4F20;&#x9012;&#x5BF9;&#x8C61;&#x5373;&#x53EF; &#x56E0;&#x4E3A;jq&#x5185;&#x90E8;&#x5DF2;&#x7ECF;&#x81EA;&#x52A8;&#x8F6C;&#x6362;&#x4E86;
+     success: function (response) {
+          &#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5904;&#x7406;
+         root.innerHTML = `&lt;img src = ${response.avatar_url} style = &quot;width:100px&quot;&gt;`
+         console.log(response);
+     }
+ });
+</code></pre><h3 class="mume-header" id="axios">axios</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x5728;&#x9879;&#x76EE;&#x91CC;&#x9762; &#x4E0B;&#x8F7D; npm i axios --save
+
+ axios &#x76F8;&#x5173;&#x7F51;&#x5740; https://www.npmjs.com/package/axios
+ axios get&#x65B9;&#x6CD5;
+ import axios from &quot;axios&quot;;
+ axios.get(&apos;https://api.github.com/users/Lmoxiaobei&apos;)
+  .then &#x6210;&#x529F;&#x4E4B;&#x540E; &#x6267;&#x884C;&#x7684;&#x51FD;&#x6570; &#x8BE5;&#x51FD;&#x6570;&#x91CC;&#x9762;&#x7684;&#x53C2;&#x6570; &#x662F;&#x4E00;&#x4E2A;axios &#x81EA;&#x5B9A;&#x4E49;&#x5BF9;&#x8C61; &#x8BE5;&#x5BF9;&#x8C61;&#x4E0B;&#x6709;&#x4E00;&#x4E2A; data &#x5C5E;&#x6027; &#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x5C31;&#x662F;&#x540E;&#x53F0;&#x54CD;&#x5E94;&#x7684;&#x6570;&#x636E;
+     .then(function (res) {
+         console.log(res.data);
+         root.innerHTML = `&lt;img src = ${res.data.avatar_url} style = &quot;width:100px&quot;&gt;`
+     })
+     .catch(function (error) {
+         console.log(error);
+     });
+
+
+
+ axios post&#x65B9;&#x6CD5;
+import axios from &quot;axios&quot;;
+axios.post(&apos;https://cnodejs.org/api/v1/accesstoken&apos;, {
+    accesstoken: &quot;d12252e5-503c-488b-839f-4e7441c6dafc&quot;
+})
+     
+    .then(res =&gt; console.log(res.data))
+    .catch(err =&gt; console.log(err))
+
+ &#x540C;&#x65F6;&#x4E24;&#x4E2A;&#x8BF7;&#x6C42;&#x5199;&#x6CD5;
+
+ import axios from &quot;axios&quot;;
+ function getUser1(){
+     return axios.get(&apos;https://api.github.com/users/Lmoxiaobei&apos;)
+ }
+ function getUser2() {
+     return axios.get(&apos;https://api.github.com/users/fnyangyu&apos;)
+ }
+ axios.all([getUser1(),getUser2()])
+ .then(function(acct){
+      &#x4E24;&#x4E2A;&#x8BF7;&#x6C42;&#x5168;&#x90E8;&#x7ED3;&#x675F;&#x4E4B;&#x540E;,&#x8981;&#x505A;&#x7684;&#x4E8B;&#x60C5;
+     console.log(acct[0].data);
+     console.log(acct[1].data);
+ })
+</code></pre><h3 class="mume-header" id="vue">VUE</h3>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x6253;&#x5F00; &#x7F51;&#x5740;   https://cn.vuejs.org/
+&#x70B9;&#x51FB;&#x8D77;&#x6B65;
+Vue &#x662F;&#x4E00;&#x4E2A;&#x6846;&#x67B6; &#x82F1;&#x6587;&#x53EB;framework &#x6846;&#x67B6;&#x662F;,&#x6846;&#x67B6;&#x4F5C;&#x8005;&#x7CBE;&#x5FC3;&#x6311;&#x9009;&#x7684;&#x4E00;&#x7CFB;&#x5217; js &#x5E93;&#x7684;&#x96C6;&#x5408;.
+&#x8FD9;&#x4E9B;&#x5F62;&#x6210;&#x4E86;&#x4E00;&#x5957;&#x5B8C;&#x6574;&#x7684;&#x5199; Web APP &#x7684;&#x601D;&#x8DEF;
+Web app &#x6216;&#x8005;&#x53EB;&#x7F51;&#x9875; app&#x662F;&#x57FA;&#x4E8E;&#x6D4F;&#x89C8;&#x5668;&#x8FD0;&#x884C;&#x7684; APP &#x6216;&#x8005;&#x5C31;&#x662F;&#x5E26;&#x66F4;&#x591A;&#x529F;&#x80FD;&#x7684;&#x7F51;&#x7AD9; 
+</code></pre><p><img src="images/4.png" alt="" title="&#x63CF;&#x8FF0;"><br>
+vue-cli 搭建开发环境</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x9996;&#x5148;&#x53C2;&#x8003;[ Vue-cli](https://github.com/vuejs/vue-cli) &#x7684;&#x5B98;&#x7F51;&#xFF0C;&#x6765;&#x642D;&#x5EFA;&#x811A;&#x624B;&#x67B6;&#x3002;
+</code></pre><p><a href="https://cn.vuejs.org/">Vue-cli</a>官网</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>&#x5728;&#x547D;&#x4EE4;&#x884C;&#x5185; &#x5199; npm i -g vue-cli &#x6765;&#x8FDB;&#x884C;&#x5B89;&#x88C5; Vue&#x73AF;&#x5883;
+
+&#x5B89;&#x88C5; vue-cli &#x3002;cli &#x7684;&#x610F;&#x601D;&#x662F;**&#x547D;&#x4EE4;** &#x3002;vue-cli &#x662F;&#x7528;&#x6765;&#x5FEB;&#x901F;&#x642D;&#x5EFA; vue &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x3002;
+
+&#x5728;&#x547D;&#x4EE4;&#x884C;&#x5185; &#x8F93;&#x5165; vue-init webpack demo &#x5B89;&#x88C5;vue&#x7684; webpack&#x73AF;&#x5883;  demo&#x7684;&#x610F;&#x601D;&#x662F;&#x5B89;&#x88C5;vue&#x65F6;&#x4E0B;&#x8F7D;&#x7684;&#x6587;&#x6863;&#x540D;&#x5B57;
+
+Vue &#x5F00;&#x542F;&#x7684;&#x547D;&#x4EE4;&#x662F; npm run dev (&#x5728;&#x547D;&#x4EE4;&#x884C;&#x5185;&#x5199;)
+</code></pre><p><img src="images/5.png" alt=""></p>
+<p><img src="images/6.png" alt=""></p>
+<p><img src="images/7.png" alt=""></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>@click &#x8FD9;&#x662F;vue&#x7684;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;
+
+v-for &#x8FD9;&#x662F;vue &#x7684;&#x4F7F;&#x7528;map&#x65B9;&#x6CD5; &#x7528;&#x6765;&#x904D;&#x5386;&#x6570;&#x7EC4;  &#x4F46;&#x662F;&#x4E00;&#x822C;&#x4F1A;&#x5728;&#x524D;&#x9762;&#x5199; :key 
+&#x5217;&#x8868;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x90FD;&#x8981;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684; key &#x3002;&#x4E0D;&#x7136;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x7F16;&#x8F91;&#x5668;&#x4E2D;&#x6709;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&#x63D0;&#x793A;&#x3002;
+&#x540C;&#x65F6; vue &#x89C4;&#x5B9A;&#xFF0C;v-for &#x4E0D;&#x80FD;&#x7528;&#x5728;&#x9876;&#x7EA7;&#x7EC4;&#x4EF6;&#x4E2D;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x628A;&#x5916;&#x90E8;&#x5305;&#x88F9;&#x4E00;&#x5C42; div &#x3002;
+
+</code></pre>
+      </div>
+      
+      
+    </body>
+    
+    
+    
+    
+    
+    
+    
+  </html>

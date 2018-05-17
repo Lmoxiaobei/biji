@@ -618,6 +618,16 @@ axios.post('https://cnodejs.org/api/v1/accesstoken', {
      console.log(acct[0].data);
      console.log(acct[1].data);
  })
+
+
+  结构赋值
+ let post = {
+   body: 'hello'
+ }
+ let sayHello = ({ body }) => {
+   console.log(body)  输出的是hello
+ }
+ sayHello(post)
 ```
 ### VUE
 ```
@@ -650,9 +660,16 @@ Vue 开启的命令是 npm run dev (在命令行内写)
 ![](images/7.png)
 ```
 @click 这是vue的点击事件
+:  意思是v-bind 的事件  动态属性
+@ 在导入文件的时候可以代替../
 
 v-for 这是vue 的使用map方法 用来遍历数组  但是一般会在前面写 :key 
 列表的每一个元素都要添加一个独立的 key 。不然可以看到编辑器中有语法错误提示。
 同时 vue 规定，v-for 不能用在顶级组件中，所以要把外部包裹一层 div 。
 
 ```
+![](images/8.png)
+这里的title是一个属性  在html里面起名使用的 class 其实就是一个属性  
+title 就是前面的PostBody的属性
+
+
